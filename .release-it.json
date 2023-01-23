@@ -23,7 +23,7 @@
         ]
       }
     },
-    "index.js": {
+    "./index.js": {
       "slackMessageTitle": "@lightness/release-it-slack-notification-plugin"
     }
   }
