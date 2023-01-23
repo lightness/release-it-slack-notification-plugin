@@ -30,6 +30,7 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   async notifyInSlack(text) {
+    console.log('>>> channel', this.slackChannel);
     await fetch(SLACK_URL, {
       method: 'POST',
       headers: {
