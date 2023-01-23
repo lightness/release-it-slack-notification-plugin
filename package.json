@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "bron test.js",
-    "release": "export $(grep -v '^#' .env | xargs) && release-it --dry-run"
+    "release": "export $(grep -v '^#' .env | xargs) && release-it"
   },
   "keywords": [
     "release",
@@ -28,6 +28,7 @@
   "bugs": "https://github.com/my/awesome-plugin/issues",
   "author": "Uladzimir Aleshka",
   "devDependencies": {
+    "@release-it/conventional-changelog": "^5.1.1",
     "bron": "^2.0.3",
     "release-it": "^15.6.0",
     "sinon": "^15.0.1"
