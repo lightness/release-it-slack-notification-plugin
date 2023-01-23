@@ -6,7 +6,6 @@ const SLACK_URL = 'https://slack.com/api/chat.postMessage';
 
 class SlackNotificationPlugin extends Plugin {
   async beforeRelease() {
-    this.log.warn('HELLO!!!');
     const changelog = this.config.getContext('changelog');
 
     await this.notifyInSlack(changelog);
