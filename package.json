@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "bron test.js",
-    "release": "release-it"
+    "release": "npm run env && release-it",
+    "env": "export $(grep -v '^#' .env | xargs)"
   },
   "keywords": [
     "release",
