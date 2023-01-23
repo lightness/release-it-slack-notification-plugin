@@ -1,5 +1,17 @@
 
 
+### [1.0.9](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.8...1.0.9) (2023-01-23)
+
+
+### Features
+
+* add prompt for notifiction sending ([90bf383](https://github.com/lightness/release-it-slack-notification-plugin/commit/90bf383b82e086c67b8df4d052c92bf15a78215a))
+
+
+### Bug Fixes
+
+* prompt message ([b24d300](https://github.com/lightness/release-it-slack-notification-plugin/commit/b24d300c8ee67dc3d6487e5fe5b31747ad9e5766))
+
 ### [1.0.8](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.7...1.0.8) (2023-01-23)
 
 
