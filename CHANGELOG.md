@@ -1,5 +1,7 @@
 
 
+### [1.0.7](https://github.com/my/awesome-plugin/compare/1.0.6...1.0.7) (2023-01-23)
+
 ### [1.0.6](https://github.com/my/awesome-plugin/compare/1.0.5...1.0.6) (2023-01-23)
 
 
