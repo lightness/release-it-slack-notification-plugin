@@ -1,7 +1,7 @@
 {
-  "name": "my-plugin",
+  "name": "@lightness/release-it-slack-notification-plugin",
   "version": "0.0.0",
-  "description": "My plugin for release-it",
+  "description": "Plugin for release-it to notify about release in slack",
   "type": "module",
   "exports": {
     ".": "./index.js",
@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/my/awesome-plugin#readme",
   "bugs": "https://github.com/my/awesome-plugin/issues",
-  "author": "",
-  "dependencies": {},
+  "author": "Uladzimir Aleshka",
   "devDependencies": {
     "bron": "^2.0.3",
     "release-it": "^15.2.0",
@@ -40,5 +39,9 @@
     "hooks": {
       "before:init": "npm test"
     }
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.0",
+    "slackify-markdown": "^4.3.1"
   }
 }
