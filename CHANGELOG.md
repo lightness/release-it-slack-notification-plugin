@@ -1,5 +1,12 @@
 
 
+### [1.0.8](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.7...1.0.8) (2023-01-23)
+
+
+### Bug Fixes
+
+* repo url in package.json ([61efa45](https://github.com/lightness/release-it-slack-notification-plugin/commit/61efa45dd25565fd589ce4bb632e3333d9588a19))
+
 ### [1.0.7](https://github.com/my/awesome-plugin/compare/1.0.6...1.0.7) (2023-01-23)
 
 ### [1.0.6](https://github.com/my/awesome-plugin/compare/1.0.5...1.0.6) (2023-01-23)
