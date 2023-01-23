@@ -29,11 +29,11 @@
   "author": "Uladzimir Aleshka",
   "devDependencies": {
     "bron": "^2.0.3",
-    "release-it": "^15.2.0",
+    "release-it": "^15.6.0",
     "sinon": "^15.0.1"
   },
   "peerDependencies": {
-    "release-it": "^15.2.0"
+    "release-it": "^15.6.0"
   },
   "engines": {
     "node": ">=14.9"
