@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "bron test.js",
-    "release": "export $(grep -v '^#' .env | xargs) && release-it"
+    "release": "export $(grep -v '^#' .env | xargs) && release-it -c ./.release-it.json"
   },
   "keywords": [
     "release",
