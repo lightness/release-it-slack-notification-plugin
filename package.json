@@ -1,5 +1,6 @@
 {
   "name": "@lightness/release-it-slack-notification-plugin",
+  "private": false,
   "version": "0.0.0",
   "description": "Plugin for release-it to notify about release in slack",
   "type": "module",
