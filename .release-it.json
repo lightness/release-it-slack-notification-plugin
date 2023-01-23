@@ -6,7 +6,7 @@
     "publish": true
   },
   "plugins": {
-    ".": {
+    "index.js": {
       "slackMessageTitle": "@lightness/release-it-slack-notification-plugin"
     }
   }
