@@ -22,10 +22,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/my/awesome-plugin.git"
+    "url": "https://github.com/lightness/release-it-slack-notification-plugin.git"
   },
-  "homepage": "https://github.com/my/awesome-plugin#readme",
-  "bugs": "https://github.com/my/awesome-plugin/issues",
+  "homepage": "https://github.com/lightness/release-it-slack-notification-plugin#readme",
+  "bugs": "https://github.com/lightness/release-it-slack-notification-plugin/issues",
   "author": "Uladzimir Aleshka",
   "devDependencies": {
     "@release-it/conventional-changelog": "^5.1.1",
