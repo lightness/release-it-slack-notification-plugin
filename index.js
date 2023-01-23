@@ -1,14 +1,26 @@
 import { Plugin } from 'release-it';
 import fetch from 'node-fetch';
 import slackify from 'slackify-markdown';
+import { default as prompts } from './prompts.js';
 
 const SLACK_URL = 'https://slack.com/api/chat.postMessage';
 
 class SlackNotificationPlugin extends Plugin {
+
+  constructor(...args) {
+    super(...args);
+    this.registerPrompts(prompts);
+  }
+
   async beforeRelease() {
     const changelog = this.config.getContext('changelog');
 
-    await this.notifyInSlack(changelog);
+    await this.step({
+      enabled: true,
+      prompt: 'sendSlackNotification',
+      task: () => this.notifyInSlack(changelog),
+      label: 'Send slack notification',
+    })
   }
 
   get slackBotTokenRef() {
