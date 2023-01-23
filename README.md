@@ -1,4 +1,4 @@
-# My plugin for release-it
+# Plugin for release-it to notify about release in slack
 
 This [release-it plugin](https://github.com/release-it/release-it/blob/master/docs/plugins.md) ...
 
@@ -11,7 +11,9 @@ In [release-it](https://github.com/release-it/release-it) config:
 ```
 "plugins": {
   "@lightness/release-it-slack-notification-plugin": {
-    "prop": "value"
+    "slackBotTokenRef": "SLACK_BOT_TOKEN",
+    "slackChannelRef": "SLACK_CHANNEL",
+    "slackMessageTitle": "New release",
   }
 }
 ```

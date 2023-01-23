@@ -11,16 +11,24 @@ class SlackNotificationPlugin extends Plugin {
     await this.notifyInSlack(changelog);
   }
 
-  get slackBotToken() {
+  get slackBotTokenRef() {
     const { slackBotTokenRef = 'SLACK_BOT_TOKEN' } = this.options;
 
-    return process.env[slackBotTokenRef];
+    return slackBotTokenRef;
+  }
+
+  get slackBotToken() {
+    return process.env[this.slackBotTokenRef];
+  }
+
+  get slackChannelRef() {
+    const { slackChannelRef = 'SLACK_CHANNEL' } = this.options;
+
+    return slackChannelRef;
   }
 
   get slackChannel() {
-    const { slackChannelRef = 'SLACK_CHANNEL' } = this.options;
-
-    return process.env[slackChannelRef];
+    return process.env[this.slackChannelRef];
   }
 
   get slackMessageTitle() {
@@ -30,7 +38,18 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   async notifyInSlack(text) {
-    console.log('>>> channel', this.slackChannel);
+    if (!this.slackBotToken) {
+      this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
+
+      return;
+    }
+
+    if (!this.slackChannel) {
+      this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
+
+      return;
+    }
+
     await fetch(SLACK_URL, {
       method: 'POST',
       headers: {
