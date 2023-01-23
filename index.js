@@ -92,7 +92,7 @@ class SlackNotificationPlugin extends Plugin {
       }),
     });
 
-    this.log.log(`Sent notification in ${this.slackChannel} slack channel`);
+    this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
   }
 }
 
