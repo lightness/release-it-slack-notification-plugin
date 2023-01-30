@@ -1,5 +1,12 @@
 
 
+### [1.0.12](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.11...1.0.12) (2023-01-30)
+
+
+### Features
+
+* remove divider ([1ffffd5](https://github.com/lightness/release-it-slack-notification-plugin/commit/1ffffd5ef780604f2733ad715a2ba28bcc1605b6))
+
 ### [1.0.11](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.10...1.0.11) (2023-01-30)
 
 
