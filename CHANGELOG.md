@@ -1,5 +1,12 @@
 
 
+### [1.0.11](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.10...1.0.11) (2023-01-30)
+
+
+### Bug Fixes
+
+* change block type to section ([57d6e9f](https://github.com/lightness/release-it-slack-notification-plugin/commit/57d6e9fe0b6c88b8e97910037208793de971774c))
+
 ### [1.0.10](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.9...1.0.10) (2023-01-30)
 
 
