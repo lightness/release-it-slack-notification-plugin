@@ -74,8 +74,8 @@ class SlackNotificationPlugin extends Plugin {
           {
             type: 'header',
             text: {
-              type: 'plain_text',
-              text: this.slackMessageTitle,
+              type: 'mrkdwn',
+              text: '`' + this.slackMessageTitle + '`',
             }
           },
           {
