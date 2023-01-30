@@ -62,7 +62,7 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
-    await fetch(SLACK_URL, {
+    const response = await fetch(SLACK_URL, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${this.slackBotToken}`,
@@ -72,7 +72,7 @@ class SlackNotificationPlugin extends Plugin {
         channel: this.slackChannel,
         blocks: [
           {
-            type: 'header',
+            type: 'section',
             text: {
               type: 'mrkdwn',
               text: '`' + this.slackMessageTitle + '`',
