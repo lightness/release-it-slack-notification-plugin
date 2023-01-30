@@ -1,5 +1,17 @@
 
 
+### [1.0.10](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.9...1.0.10) (2023-01-30)
+
+
+### Features
+
+* try different header ([8110f4e](https://github.com/lightness/release-it-slack-notification-plugin/commit/8110f4e765046329b2789061c97214cf80b23c24))
+
+
+### Bug Fixes
+
+* wording ([00d4ae2](https://github.com/lightness/release-it-slack-notification-plugin/commit/00d4ae2da038e01e2db6c1bdcdc660253584237a))
+
 ### [1.0.9](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.8...1.0.9) (2023-01-23)
 
 
