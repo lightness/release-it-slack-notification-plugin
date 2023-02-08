@@ -1,5 +1,12 @@
 
 
+### [1.0.13](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.12...1.0.13) (2023-02-08)
+
+
+### Features
+
+* add username and icon emoji ([f1e7c67](https://github.com/lightness/release-it-slack-notification-plugin/commit/f1e7c67407df366d160c029651f93a01b7c51d06))
+
 ### [1.0.12](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.11...1.0.12) (2023-01-30)
 
 
