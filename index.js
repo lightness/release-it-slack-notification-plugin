@@ -49,6 +49,18 @@ class SlackNotificationPlugin extends Plugin {
     return slackMessageTitle;
   }
 
+  get slackUsername() {
+    const { slackUsername = 'release-it' } = this.options;
+
+    return slackUsername;
+  }
+
+  get slackIconEmoji() {
+    const { slackIconEmoji = ':robot_face:' } = this.options;
+
+    return slackIconEmoji;
+  }
+
   async notifyInSlack(text) {
     if (!this.slackBotToken) {
       this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
@@ -86,6 +98,8 @@ class SlackNotificationPlugin extends Plugin {
             },
           },
         ],
+        username: this.slackUsername,
+				icon_emoji: this.slackIconEmoji,
       }),
     });
 
