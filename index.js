@@ -6,8 +6,6 @@ import SlackBolt from '@slack/bolt';
 
 const { App } = SlackBolt;
 
-const SLACK_URL = 'https://slack.com/api/chat.postMessage';
-
 class SlackNotificationPlugin extends Plugin {
 
   constructor(...args) {
@@ -107,8 +105,19 @@ class SlackNotificationPlugin extends Plugin {
     });
 
     app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
-      console.log('>>> approve got')
       await ack();
+      await say({
+        text: 'Approve handled :clap:',
+        thread_ts: body.message.thread_ts || body.message.ts,
+      });
+    });
+
+    app.action('reject_button', async ({ payload, body, ack, say, respond }) => {
+      await ack();
+      await say({
+        text: 'Reject handled :clap:',
+        thread_ts: body.message.thread_ts || body.message.ts,
+      });
     });
 
     await app.start();
@@ -163,16 +172,7 @@ class SlackNotificationPlugin extends Plugin {
       icon_emoji: this.slackIconEmoji,
     });
 
-    // const response = await fetch(SLACK_URL, {
-    //   method: 'POST',
-    //   headers: {
-    //     authorization: `Bearer ${this.slackBotToken}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(),
-    // });
-
-    this.log.log('>>> response', await response.json());
+    this.log.log('>>> response', response);
 
     this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
   }
