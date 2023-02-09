@@ -111,69 +111,66 @@ class SlackNotificationPlugin extends Plugin {
       await ack();
     });
 
-    const response = await fetch(SLACK_URL, {
-      method: 'POST',
-      headers: {
-        authorization: `Bearer ${this.slackBotToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        channel: this.slackChannel,
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: '`' + this.slackMessageTitle + '`',
-            }
+    await app.start();
+    console.log('⚡️ Bolt app started');
+
+    const response = await app.client.chat.postMessage({
+      channel: this.slackChannel,
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: '`' + this.slackMessageTitle + '`',
+          }
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: slackify(text),
           },
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: slackify(text),
+        },
+        {
+          type: 'actions',
+          elements: [
+            {
+              action_id: 'approve_button',
+              type: 'button',
+              style: 'primary',
+              text: {
+                type: 'plain_text',
+                text: ':thumbsup: Approve',
+                emoji: true,
+              },
+              value: '1',
             },
-          },
-          {
-            type: 'actions',
-            elements: [
-              {
-                action_id: 'approve_button',
-                type: 'button',
-                style: 'primary',
-                text: {
-                  type: 'plain_text',
-                  text: ':thumbsup: Approve',
-                  emoji: true,
-                },
-                // value: '1',
+            {
+              action_id: 'reject_button',
+              type: 'button',
+              style: 'danger',
+              text: {
+                type: 'plain_text',
+                text: ':no_entry: Reject',
+                emoji: true,
               },
-              {
-                action_id: 'reject_button',
-                type: 'button',
-                style: 'danger',
-                text: {
-                  type: 'plain_text',
-                  text: ':no_entry: Reject',
-                  emoji: true,
-                },
-                // value: '0',
-              },
-            ],
-          },
-        ],
-        username: this.slackUsername,
-				icon_emoji: this.slackIconEmoji,
-      }),
+              value: '0',
+            },
+          ],
+        },
+      ],
+      username: this.slackUsername,
+      icon_emoji: this.slackIconEmoji,
     });
 
-
-
-    (async () => {
-      await app.start();
-      console.log('⚡️ Bolt app started');
-    })();
-
+    // const response = await fetch(SLACK_URL, {
+    //   method: 'POST',
+    //   headers: {
+    //     authorization: `Bearer ${this.slackBotToken}`,
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(),
+    // });
 
     this.log.log('>>> response', await response.json());
 
