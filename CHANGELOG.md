@@ -1,5 +1,26 @@
 
 
+## [1.1.0-0](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.13...1.1.0-0) (2023-02-09)
+
+
+### Features
+
+* another action implementation ([1d61dd2](https://github.com/lightness/release-it-slack-notification-plugin/commit/1d61dd2b28a64fbf66a79f137df8f05d1f904b67))
+* different bolt usage ([937055f](https://github.com/lightness/release-it-slack-notification-plugin/commit/937055f93551f47fcd618d4e3f2f79a28f995959))
+* different button implementation ([cddc06c](https://github.com/lightness/release-it-slack-notification-plugin/commit/cddc06cc054bf8c4da0a4aba371cbf0585b7251f))
+* different buttons implementation ([3c80b75](https://github.com/lightness/release-it-slack-notification-plugin/commit/3c80b7563d3f32ae118a6a7b83797c06b2564946))
+* install @slack/bolt ([c99c9d1](https://github.com/lightness/release-it-slack-notification-plugin/commit/c99c9d1ac83214792285b0fb7eb8c74d11a49a6b))
+* testing action ([e8132c6](https://github.com/lightness/release-it-slack-notification-plugin/commit/e8132c63008b548a5c4eb9e9d0a85a81c1aedeaa))
+* testing actions ([a842ac0](https://github.com/lightness/release-it-slack-notification-plugin/commit/a842ac08b9cff4db1482c45b4c73a5b091f0ad88))
+
+
+### Bug Fixes
+
+* import bolt properly ([fedbde8](https://github.com/lightness/release-it-slack-notification-plugin/commit/fedbde8a4a933bfd7fde348b58023ab6cd5d4b7a))
+* try without value ([a8d9519](https://github.com/lightness/release-it-slack-notification-plugin/commit/a8d95192866c321772cdde420bbed284096ff7bd))
+* trying with ack ([3a6e434](https://github.com/lightness/release-it-slack-notification-plugin/commit/3a6e434e79be7a97c113d211429471feed52a56d))
+* use built-in app client ([75afb01](https://github.com/lightness/release-it-slack-notification-plugin/commit/75afb01cf28c7ecf2665b1a631c50afd3bf6deaa))
+
 ### [1.0.13](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.12...1.0.13) (2023-02-08)
 
 
