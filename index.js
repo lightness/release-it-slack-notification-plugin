@@ -2,6 +2,7 @@ import { Plugin } from 'release-it';
 import fetch from 'node-fetch';
 import slackify from 'slackify-markdown';
 import { default as prompts } from './prompts.js';
+import { App } from '@slack/bolt';
 
 const SLACK_URL = 'https://slack.com/api/chat.postMessage';
 
@@ -31,6 +32,26 @@ class SlackNotificationPlugin extends Plugin {
 
   get slackBotToken() {
     return process.env[this.slackBotTokenRef];
+  }
+
+  get slackSigningSecretRef() {
+    const { slackSigningSecretRef = 'SLACK_SIGNING_SECRET' } = this.options;
+
+    return slackSigningSecretRef;
+  }
+
+  get slackSigningSecret() {
+    return process.env[this.slackSigningSecretRef];
+  }
+
+  get slackAppTokenRef() {
+    const { slackAppTokenRef = 'SLACK_APP_TOKEN' } = this.options;
+
+    return slackAppTokenRef;
+  }
+
+  get slackAppToken() {
+    return process.env[this.slackAppTokenRef];
   }
 
   get slackChannelRef() {
@@ -68,11 +89,22 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
+    // TODO: Check other stuff
+
     if (!this.slackChannel) {
       this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
 
       return;
     }
+
+    const app = new App({
+      token: this.slackBotToken,
+      signingSecret: this.slackSigningSecret,
+      appToken: this.slackAppToken,
+      socketMode: true,
+    });
+
+    const server = await app.start();
 
     const response = await fetch(SLACK_URL, {
       method: 'POST',
@@ -98,6 +130,35 @@ class SlackNotificationPlugin extends Plugin {
             },
           },
         ],
+        attachments: [
+          { 
+            blocks: [
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: '*Can we perform a release?*'
+                }
+              },
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: "<https://example.com|Bates Motel> :star::star:"
+                },
+                accessory: {
+                  type: "button",
+                  text: {
+                    type: "plain_text",
+                    text: "View",
+                    emoji: true
+                  },
+                  value: "view_alternate_1"
+                }
+              },
+            ]
+          }
+        ],
         username: this.slackUsername,
 				icon_emoji: this.slackIconEmoji,
       }),
@@ -106,6 +167,8 @@ class SlackNotificationPlugin extends Plugin {
     this.log.log('>>> response', await response.json());
 
     this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
+
+    server.close();
   }
 }
 
