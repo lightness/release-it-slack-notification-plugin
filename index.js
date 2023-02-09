@@ -135,62 +135,33 @@ class SlackNotificationPlugin extends Plugin {
               text: slackify(text),
             },
           },
-        ],
-        attachments: [
-          { 
-            blocks: [
+          {
+            type: 'actions',
+            elements: [
               {
-                type: 'section',
+                action_id: 'approve_button',
+                type: 'button',
+                style: 'primary',
                 text: {
-                  type: 'mrkdwn',
-                  text: '*Can we perform a release?*'
-                }
-              },
-              {
-                type: "section",
-                text: {
-                  type: "mrkdwn",
-                  text: "<https://example.com|Bates Motel> :star::star:"
+                  type: 'plain_text',
+                  text: ':thumbsup: Approve',
+                  emoji: true,
                 },
-                accessory: {
-                    type: "button",
-                    text: {
-                      type: "plain_text",
-                      text: "View",
-                      emoji: true
-                    },
-                    action_id: 'approve_button',
-                  }
+                value: '1',
               },
               {
-                type: 'actions',
-                elements: [
-                  {
-                    action_id: 'approve_button',
-                    type: 'button',
-                    style: 'primary',
-                    text: {
-                      type: 'plain_text',
-                      text: ':thumbsup: Approve',
-                      emoji: true,
-                    },
-                    value: '1',
-                  },
-                  {
-                    action_id: 'reject_button',
-                    type: 'button',
-                    style: 'danger',
-                    text: {
-                      type: 'plain_text',
-                      text: ':no_entry: Reject',
-                      emoji: true,
-                    },
-                    value: '0',
-                  },
-                ],
+                action_id: 'reject_button',
+                type: 'button',
+                style: 'danger',
+                text: {
+                  type: 'plain_text',
+                  text: ':no_entry: Reject',
+                  emoji: true,
+                },
+                value: '0',
               },
-            ]
-          }
+            ],
+          },
         ],
         username: this.slackUsername,
 				icon_emoji: this.slackIconEmoji,
