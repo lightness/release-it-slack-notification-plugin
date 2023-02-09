@@ -74,7 +74,7 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
-    await fetch(SLACK_URL, {
+    const response = await fetch(SLACK_URL, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${this.slackBotToken}`,
@@ -102,6 +102,8 @@ class SlackNotificationPlugin extends Plugin {
 				icon_emoji: this.slackIconEmoji,
       }),
     });
+
+    this.log.log('>>> response', response);
 
     this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
   }
