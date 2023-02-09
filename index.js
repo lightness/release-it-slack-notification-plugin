@@ -149,14 +149,42 @@ class SlackNotificationPlugin extends Plugin {
                   text: "<https://example.com|Bates Motel> :star::star:"
                 },
                 accessory: {
-                  type: "button",
-                  text: {
-                    type: "plain_text",
-                    text: "View",
-                    emoji: true
-                  },
-                  value: "view_alternate_1"
-                }
+                  type: 'actions',
+                  elements: [
+                    {
+                      action_id: 'approve_button',
+                      type: 'button',
+                      style: 'primary',
+                      text: {
+                        type: 'plain_text',
+                        text: ':thumbsup: Approve',
+                        emoji: true,
+                      },
+                      value: '1',
+                    },
+                    {
+                      action_id: 'reject_button',
+                      type: 'button',
+                      style: 'danger',
+                      text: {
+                        type: 'plain_text',
+                        text: ':no_entry: Reject',
+                        emoji: true,
+                      },
+                      value: '0',
+                    },
+                  ],
+                },
+                
+                // {
+                //   type: "button",
+                //   text: {
+                //     type: "plain_text",
+                //     text: "View",
+                //     emoji: true
+                //   },
+                //   value: "view_alternate_1"
+                // }
               },
             ]
           }
@@ -169,8 +197,6 @@ class SlackNotificationPlugin extends Plugin {
     this.log.log('>>> response', await response.json());
 
     this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
-
-    server.close();
   }
 }
 
