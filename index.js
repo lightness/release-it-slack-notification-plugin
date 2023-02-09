@@ -106,6 +106,10 @@ class SlackNotificationPlugin extends Plugin {
       socketMode: true,
     });
 
+    app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
+      console.log('>>> approve got');
+    });
+
     const server = await app.start();
 
     const response = await fetch(SLACK_URL, {
