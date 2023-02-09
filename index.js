@@ -107,7 +107,8 @@ class SlackNotificationPlugin extends Plugin {
     });
 
     app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
-      console.log('>>> approve got');
+      console.log('>>> approve got')
+      await ack();
     });
 
     const response = await fetch(SLACK_URL, {
@@ -165,6 +166,8 @@ class SlackNotificationPlugin extends Plugin {
 				icon_emoji: this.slackIconEmoji,
       }),
     });
+
+
 
     (async () => {
       await app.start();
