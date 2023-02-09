@@ -110,8 +110,6 @@ class SlackNotificationPlugin extends Plugin {
       console.log('>>> approve got');
     });
 
-    const server = await app.start();
-
     const response = await fetch(SLACK_URL, {
       method: 'POST',
       headers: {
@@ -167,6 +165,12 @@ class SlackNotificationPlugin extends Plugin {
 				icon_emoji: this.slackIconEmoji,
       }),
     });
+
+    (async () => {
+      await app.start();
+      console.log('⚡️ Bolt app started');
+    })();
+
 
     this.log.log('>>> response', await response.json());
 
