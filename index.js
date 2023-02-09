@@ -2,7 +2,9 @@ import { Plugin } from 'release-it';
 import fetch from 'node-fetch';
 import slackify from 'slackify-markdown';
 import { default as prompts } from './prompts.js';
-import { App } from '@slack/bolt';
+import SlackBolt from '@slack/bolt';
+
+const { App } = SlackBolt;
 
 const SLACK_URL = 'https://slack.com/api/chat.postMessage';
 
