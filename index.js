@@ -146,7 +146,7 @@ class SlackNotificationPlugin extends Plugin {
                   text: ':thumbsup: Approve',
                   emoji: true,
                 },
-                value: '1',
+                // value: '1',
               },
               {
                 action_id: 'reject_button',
@@ -157,7 +157,7 @@ class SlackNotificationPlugin extends Plugin {
                   text: ':no_entry: Reject',
                   emoji: true,
                 },
-                value: '0',
+                // value: '0',
               },
             ],
           },
