@@ -161,36 +161,33 @@ class SlackNotificationPlugin extends Plugin {
                     },
                     action_id: 'approve_button',
                   }
-                
-                // {
-                //   type: 'actions',
-                //   elements: [
-                //     {
-                //       action_id: 'approve_button',
-                //       type: 'button',
-                //       style: 'primary',
-                //       text: {
-                //         type: 'plain_text',
-                //         text: ':thumbsup: Approve',
-                //         emoji: true,
-                //       },
-                //       value: '1',
-                //     },
-                //     {
-                //       action_id: 'reject_button',
-                //       type: 'button',
-                //       style: 'danger',
-                //       text: {
-                //         type: 'plain_text',
-                //         text: ':no_entry: Reject',
-                //         emoji: true,
-                //       },
-                //       value: '0',
-                //     },
-                //   ],
-                // },
-                
-                
+              },
+              {
+                type: 'actions',
+                elements: [
+                  {
+                    action_id: 'approve_button',
+                    type: 'button',
+                    style: 'primary',
+                    text: {
+                      type: 'plain_text',
+                      text: ':thumbsup: Approve',
+                      emoji: true,
+                    },
+                    value: '1',
+                  },
+                  {
+                    action_id: 'reject_button',
+                    type: 'button',
+                    style: 'danger',
+                    text: {
+                      type: 'plain_text',
+                      text: ':no_entry: Reject',
+                      emoji: true,
+                    },
+                    value: '0',
+                  },
+                ],
               },
             ]
           }
