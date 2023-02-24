@@ -1,5 +1,12 @@
 
 
+## [1.1.0-4](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-3...1.1.0-4) (2023-02-24)
+
+
+### Bug Fixes
+
+* add message to inquirer object ([80ce093](https://github.com/lightness/release-it-slack-notification-plugin/commit/80ce0936e82796a8293e8fe1200bf4ddb208ad06))
+
 ## [1.1.0-3](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-2...1.1.0-3) (2023-02-24)
 
 
