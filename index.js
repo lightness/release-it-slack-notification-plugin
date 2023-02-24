@@ -115,7 +115,6 @@ class SlackNotificationPlugin extends Plugin {
     }
 
     const message = this.composeNotificationMessage(text);
-    const response = await app.client.chat.postMessage(message);
 
     this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
   }
@@ -213,38 +212,44 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
-    const app = new App({
-      token: this.slackBotToken,
-      signingSecret: this.slackSigningSecret,
-      appToken: this.slackAppToken,
-      socketMode: true,
-    });
-
-    app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
-      await ack();
-      await say({
-        text: 'Approve handled :clap:',
-        thread_ts: body.message.thread_ts || body.message.ts,
+    await new Promise(async (resolve, reject) => {
+      const app = new App({
+        token: this.slackBotToken,
+        signingSecret: this.slackSigningSecret,
+        appToken: this.slackAppToken,
+        socketMode: true,
       });
-    });
+  
+      app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
+        await ack();
+        await say({
+          text: 'Approve handled :clap:',
+          thread_ts: body.message.thread_ts || body.message.ts,
+        });
 
-    app.action('reject_button', async ({ payload, body, ack, say, respond }) => {
-      await ack();
-      await say({
-        text: 'Reject handled :clap:',
-        thread_ts: body.message.thread_ts || body.message.ts,
+        resolve();
       });
+  
+      app.action('reject_button', async ({ payload, body, ack, say, respond }) => {
+        await ack();
+        await say({
+          text: 'Reject handled :clap:',
+          thread_ts: body.message.thread_ts || body.message.ts,
+        });
+
+        reject();
+      });
+  
+      await app.start();
+      console.log('⚡️ Bolt app started');
+  
+      const message = this.composeConfirmationMessage(text);
+      const response = await app.client.chat.postMessage(message);
+  
+      this.log.log('>>> response', response);
+  
+      this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
     });
-
-    await app.start();
-    console.log('⚡️ Bolt app started');
-
-    const message = this.composeConfirmationMessage(text);
-    const response = await app.client.chat.postMessage(message);
-
-    this.log.log('>>> response', response);
-
-    this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
   }
 }
 
