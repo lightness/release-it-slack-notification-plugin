@@ -1,3 +1,5 @@
+import { getPluginConfig } from './util.js';
+
 export default {
   sendSlackNotification: {
     type: 'confirm',
@@ -20,8 +22,9 @@ export default {
       return 'Select slack users to confirm release:';
     },
     choices: (options) => {
-      console.log('>>> options', options);
-      return [];
+      const config = getPluginConfig(options);
+
+      return Object.entries(config.slackUser).map(([key, value]) => `${key}  ( ${value} )`);
     }
   }
 };
