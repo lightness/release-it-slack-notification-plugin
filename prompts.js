@@ -13,10 +13,12 @@ export default {
     },
     default: true,
   },
-  selectUserToConfirm: {
+  selectUsersToConfirm: {
     type: 'checkbox',
     default: [],
-    message: 'Select slack users to confirm release:',
+    message: () => {
+      return 'Select slack users to confirm release:';
+    },
     choices: (options) => {
       console.log('>>> options', options);
       return [];
