@@ -13,4 +13,12 @@ export default {
     },
     default: true,
   },
+  selectUserToConfirm: {
+    type: 'checkbox',
+    default: [],
+    choices: (options) => {
+      console.log('>>> options', options);
+      return [];
+    }
+  }
 };

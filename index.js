@@ -23,7 +23,7 @@ class SlackNotificationPlugin extends Plugin {
           prompt: 'sendSlackNotification',
           task: () => this.notifyInSlack(changelog),
           label: 'Send slack notification',
-        })
+        });
         break;
       case 'confirmation':
         await this.step({
@@ -31,7 +31,7 @@ class SlackNotificationPlugin extends Plugin {
           prompt: 'sendSlackConfirmation',
           task: () => this.confirmInSlack(changelog),
           label: 'Send slack confirmation',
-        })
+        });
         break;
     }
     
@@ -143,7 +143,7 @@ class SlackNotificationPlugin extends Plugin {
     };
   }
 
-  composeConfirmationMessage(text) {
+  composeConfirmationMessage(text, usersToConfirm) {
     return {
       channel: this.slackChannel,
       username: this.slackUsername,
@@ -161,6 +161,13 @@ class SlackNotificationPlugin extends Plugin {
           text: {
             type: 'mrkdwn',
             text: slackify(text),
+          },
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: usersToConfirm,
           },
         },
         {
@@ -197,6 +204,10 @@ class SlackNotificationPlugin extends Plugin {
     };
   }
 
+  getUsersForConfirm() {
+
+  }
+
   async confirmInSlack(text) {
     if (!this.slackBotToken) {
       this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
@@ -211,6 +222,15 @@ class SlackNotificationPlugin extends Plugin {
 
       return;
     }
+
+    await this.step({
+      enabled: true,
+      prompt: 'selectUsersToConfirm',
+      task: (...args) => {
+        console.log('>>> args', ...args);
+      },
+      label: 'Select user to confirm',
+    })
 
     await new Promise(async (resolve, reject) => {
       const app = new App({
