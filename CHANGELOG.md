@@ -1,5 +1,17 @@
 
 
+## [1.1.0-2](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-1...1.1.0-2) (2023-02-24)
+
+
+### Features
+
+* pause execution until confirmation done ([64270c7](https://github.com/lightness/release-it-slack-notification-plugin/commit/64270c772a78ded0c6744bcb3c04ec421701a5ef))
+
+
+### Bug Fixes
+
+* change mode to notification ([5c57dbf](https://github.com/lightness/release-it-slack-notification-plugin/commit/5c57dbf96d039529dc2490a692d982fa62fd1218))
+
 ## [1.1.0-1](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-0...1.1.0-1) (2023-02-24)
 
 
