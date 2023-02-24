@@ -16,6 +16,7 @@ export default {
   selectUserToConfirm: {
     type: 'checkbox',
     default: [],
+    message: 'Select slack users to confirm release:',
     choices: (options) => {
       console.log('>>> options', options);
       return [];
