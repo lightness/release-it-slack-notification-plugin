@@ -1,5 +1,12 @@
 
 
+## [1.1.0-1](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-0...1.1.0-1) (2023-02-24)
+
+
+### Features
+
+* confirmation mode implementation ([ccc1cc8](https://github.com/lightness/release-it-slack-notification-plugin/commit/ccc1cc8de9e1902e9f1ce8a143733381a06fdec8))
+
 ## [1.1.0-0](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.0.13...1.1.0-0) (2023-02-09)
 
 
