@@ -24,7 +24,8 @@
       }
     },
     "./index.js": {
-      "slackMessageTitle": "@lightness/release-it-slack-notification-plugin"
+      "slackMessageTitle": "@lightness/release-it-slack-notification-plugin",
+      "mode": "confirmation"
     }
   }
 }

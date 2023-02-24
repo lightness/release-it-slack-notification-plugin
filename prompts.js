@@ -6,4 +6,11 @@ export default {
     },
     default: true,
   },
+  sendSlackConfirmation: {
+    type: 'confirm',
+    message: () => {
+      return `Send confirmation in slack channel?`;
+    },
+    default: true,
+  },
 };

@@ -16,12 +16,31 @@ class SlackNotificationPlugin extends Plugin {
   async beforeRelease() {
     const changelog = this.config.getContext('changelog');
 
-    await this.step({
-      enabled: true,
-      prompt: 'sendSlackNotification',
-      task: () => this.notifyInSlack(changelog),
-      label: 'Send slack notification',
-    })
+    switch (this.mode) {
+      case 'notification':
+        await this.step({
+          enabled: true,
+          prompt: 'sendSlackNotification',
+          task: () => this.notifyInSlack(changelog),
+          label: 'Send slack notification',
+        })
+        break;
+      case 'confirmation':
+        await this.step({
+          enabled: true,
+          prompt: 'sendSlackConfirmation',
+          task: () => this.confirmInSlack(changelog),
+          label: 'Send slack confirmation',
+        })
+        break;
+    }
+    
+  }
+
+  get mode() {
+    const { mode = 'notification' } = this.options;
+
+    return mode;
   }
 
   get slackBotTokenRef() {
@@ -89,6 +108,103 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
+    if (!this.slackChannel) {
+      this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
+
+      return;
+    }
+
+    const message = this.composeNotificationMessage(text);
+    const response = await app.client.chat.postMessage(message);
+
+    this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
+  }
+
+  composeNotificationMessage(text) {
+    return {
+      channel: this.slackChannel,
+      username: this.slackUsername,
+      icon_emoji: this.slackIconEmoji,
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: '`' + this.slackMessageTitle + '`',
+          }
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: slackify(text),
+          },
+        },
+      ]
+    };
+  }
+
+  composeConfirmationMessage(text) {
+    return {
+      channel: this.slackChannel,
+      username: this.slackUsername,
+      icon_emoji: this.slackIconEmoji,
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: '`' + this.slackMessageTitle + '`',
+          }
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: slackify(text),
+          },
+        },
+        {
+          type: 'divider',
+        },
+        {
+          type: 'actions',
+          elements: [
+            {
+              action_id: 'approve_button',
+              type: 'button',
+              style: 'primary',
+              text: {
+                type: 'plain_text',
+                text: ':thumbsup: Approve',
+                emoji: true,
+              },
+              value: '1',
+            },
+            {
+              action_id: 'reject_button',
+              type: 'button',
+              style: 'danger',
+              text: {
+                type: 'plain_text',
+                text: ':no_entry: Reject',
+                emoji: true,
+              },
+              value: '0',
+            },
+          ],
+        },
+      ]
+    };
+  }
+
+  async confirmInSlack(text) {
+    if (!this.slackBotToken) {
+      this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
+
+      return;
+    }
+
     // TODO: Check other stuff
 
     if (!this.slackChannel) {
@@ -123,54 +239,8 @@ class SlackNotificationPlugin extends Plugin {
     await app.start();
     console.log('⚡️ Bolt app started');
 
-    const response = await app.client.chat.postMessage({
-      channel: this.slackChannel,
-      blocks: [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '`' + this.slackMessageTitle + '`',
-          }
-        },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: slackify(text),
-          },
-        },
-        {
-          type: 'actions',
-          elements: [
-            {
-              action_id: 'approve_button',
-              type: 'button',
-              style: 'primary',
-              text: {
-                type: 'plain_text',
-                text: ':thumbsup: Approve',
-                emoji: true,
-              },
-              value: '1',
-            },
-            {
-              action_id: 'reject_button',
-              type: 'button',
-              style: 'danger',
-              text: {
-                type: 'plain_text',
-                text: ':no_entry: Reject',
-                emoji: true,
-              },
-              value: '0',
-            },
-          ],
-        },
-      ],
-      username: this.slackUsername,
-      icon_emoji: this.slackIconEmoji,
-    });
+    const message = this.composeConfirmationMessage(text);
+    const response = await app.client.chat.postMessage(message);
 
     this.log.log('>>> response', response);
 
