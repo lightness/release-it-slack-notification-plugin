@@ -1,5 +1,12 @@
 
 
+## [1.1.0-3](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-2...1.1.0-3) (2023-02-24)
+
+
+### Features
+
+* slack users to confirm ([b425560](https://github.com/lightness/release-it-slack-notification-plugin/commit/b4255603c3f4ed15e3ae9847cdeb0a2717cad228))
+
 ## [1.1.0-2](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-1...1.1.0-2) (2023-02-24)
 
 
