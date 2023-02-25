@@ -249,14 +249,21 @@ class SlackNotificationPlugin extends Plugin {
       app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
         await ack();
 
-        console.log('>>> body:', body);
+        if (slackUserIds.includes(body.user.id)) {
+          await say({
+            text: `:rocket: Thanks for your approve, <@${body.user.id}>!`,
+            thread_ts: body.message.thread_ts || body.message.ts,
+          });
+  
+          resolve();
 
-        await say({
-          text: 'Approve handled :clap:',
-          thread_ts: body.message.thread_ts || body.message.ts,
-        });
-
-        resolve();
+          app.close();
+        } else {
+          await say({
+            text: `:warning: <@${body.user.id}>! You can not approve this release.`,
+            thread_ts: body.message.thread_ts || body.message.ts,
+          });
+        }
       });
   
       app.action('reject_button', async ({ payload, body, ack, say, respond }) => {
