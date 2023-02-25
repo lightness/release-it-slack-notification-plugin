@@ -149,7 +149,7 @@ class SlackNotificationPlugin extends Plugin {
     };
   }
 
-  composeConfirmationMessage(text, usersToConfirm) {
+  composeConfirmationMessage(text, slackUserIds) {
     return {
       channel: this.slackChannel,
       username: this.slackUsername,
@@ -173,7 +173,7 @@ class SlackNotificationPlugin extends Plugin {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: usersToConfirm,
+            text: slackUserIds.map(userId => `<@${userId}>`),
           },
         },
         {
@@ -210,10 +210,6 @@ class SlackNotificationPlugin extends Plugin {
     };
   }
 
-  getUsersForConfirm() {
-
-  }
-
   async confirmInSlack(text) {
     if (!this.slackBotToken) {
       this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
@@ -229,7 +225,7 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
-    let userCodes = [];
+    let slackUserIds = [];
 
     if (this.slackUsers.length > 0) {
       await this.step({
@@ -237,13 +233,13 @@ class SlackNotificationPlugin extends Plugin {
         prompt: 'selectUsersToConfirm',
         task: (names) => {
           console.log('>>> names', names);
-          userCodes = names.map(name => this.options.slackUser[name]);
+          slackUserIds = names.map(name => this.options.slackUser[name]);
         },
         label: 'Select user to confirm',
       })
     }
 
-    console.log('>>> slack user codes', userCodes);
+    console.log('>>> slack user codes', slackUserIds);
 
     await new Promise(async (resolve, reject) => {
       const app = new App({
@@ -276,7 +272,7 @@ class SlackNotificationPlugin extends Plugin {
       await app.start();
       console.log('⚡️ Bolt app started');
   
-      const message = this.composeConfirmationMessage(text);
+      const message = this.composeConfirmationMessage(text, slackUserIds);
       const response = await app.client.chat.postMessage(message);
   
       this.log.log('>>> response', response);
