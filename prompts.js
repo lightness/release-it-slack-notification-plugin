@@ -24,7 +24,7 @@ export default {
     choices: (options) => {
       const config = getPluginConfig(options);
 
-      return Object.entries(config.slackUser).map(([key, value]) => `${key}  ( ${value} )`);
+      return Object.keys(config.slackUser);
     }
   }
 };

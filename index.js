@@ -37,6 +37,12 @@ class SlackNotificationPlugin extends Plugin {
     
   }
 
+  get slackUsers() {
+    const { slackUser = {} } = this.options;
+
+    return Object.entries(slackUser).map(([key, value]) => ({ name: key, code: value }));
+  }
+
   get mode() {
     const { mode = 'notification' } = this.options;
 
@@ -223,14 +229,20 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
-    await this.step({
-      enabled: true,
-      prompt: 'selectUsersToConfirm',
-      task: (...args) => {
-        console.log('>>> args', ...args);
-      },
-      label: 'Select user to confirm',
-    })
+    let userCodes = [];
+
+    if (this.slackUsers.length > 0) {
+      await this.step({
+        enabled: true,
+        prompt: 'selectUsersToConfirm',
+        task: (...names) => {
+          userCodes = names.map(name => this.options.slackUser[name]);
+        },
+        label: 'Select user to confirm',
+      })
+    }
+
+    console.log('>>> slack user codes', userCodes);
 
     await new Promise(async (resolve, reject) => {
       const app = new App({
