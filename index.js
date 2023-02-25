@@ -243,7 +243,15 @@ class SlackNotificationPlugin extends Plugin {
       signingSecret: this.slackSigningSecret,
       appToken: this.slackAppToken,
       socketMode: true,
-      logger: false
+      logger: {
+        debug: () => {},
+        info: () => {},
+        warn: () => {},
+        error: () => {},
+        setLevel: () => {},
+        getLevel: () => {},
+        setName: () => {},
+      },
     });
 
     await new Promise(async (resolve, reject) => {
