@@ -1,5 +1,12 @@
 
 
+## [1.1.0-8](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-7...1.1.0-8) (2023-02-25)
+
+
+### Features
+
+* stop app after successful approve/reject ([5065978](https://github.com/lightness/release-it-slack-notification-plugin/commit/50659788ed9fe923f46e89fbac205fb24793a2b6))
+
 ## [1.1.0-7](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-6...1.1.0-7) (2023-02-25)
 
 
