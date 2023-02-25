@@ -249,6 +249,8 @@ class SlackNotificationPlugin extends Plugin {
       app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
         await ack();
 
+        console.log('>>> debug approve:', body);
+
         if (slackUserIds.includes(body.user.id)) {
           await say({
             text: `:thumbsup: Thanks for your approve, <@${body.user.id}>!`,
