@@ -1,5 +1,21 @@
 
 
+## [1.1.0-5](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-4...1.1.0-5) (2023-02-25)
+
+
+### Features
+
+* infer slack user ids by from name ([c5bc203](https://github.com/lightness/release-it-slack-notification-plugin/commit/c5bc203b8315c025e61cd23b09b69f113edae72a))
+* print users in slack message ([6da8a4c](https://github.com/lightness/release-it-slack-notification-plugin/commit/6da8a4c07d9fcee72f698af557229ca16b1c99b4))
+* use inquirer choises from plugin config ([678c1b6](https://github.com/lightness/release-it-slack-notification-plugin/commit/678c1b69f70114db6494e1abd9926799e99e459c))
+
+
+### Bug Fixes
+
+* prompt name ([814e853](https://github.com/lightness/release-it-slack-notification-plugin/commit/814e853528983a09f76b9bf1e6108e6c25345449))
+* slack users in release-it config ([3f1a06c](https://github.com/lightness/release-it-slack-notification-plugin/commit/3f1a06c3f29db09b99119eb7eb42cca8ed0ee8a4))
+* switch back to confirmation mode ([fa3bb5c](https://github.com/lightness/release-it-slack-notification-plugin/commit/fa3bb5cd568c1f50420876fec91d641b8bd1147b))
+
 ## [1.1.0-4](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-3...1.1.0-4) (2023-02-24)
 
 
