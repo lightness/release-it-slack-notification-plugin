@@ -1,5 +1,18 @@
 
 
+## [1.1.0-12](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-11...1.1.0-12) (2023-02-25)
+
+
+### Features
+
+* disable bolt logs ([8418c6e](https://github.com/lightness/release-it-slack-notification-plugin/commit/8418c6ebcd773eeab807c100f1b974c1e9192db0))
+* log confirmation status ([2a8d5ce](https://github.com/lightness/release-it-slack-notification-plugin/commit/2a8d5ce7f1bb44a689d62e0135ef4867279ae3cf))
+
+
+### Bug Fixes
+
+* disable bolt logging ([31b73c5](https://github.com/lightness/release-it-slack-notification-plugin/commit/31b73c507fe8490930a9fde47705ed9a32d29723))
+
 ## [1.1.0-11](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-10...1.1.0-11) (2023-02-25)
 
 
