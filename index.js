@@ -232,14 +232,11 @@ class SlackNotificationPlugin extends Plugin {
         enabled: true,
         prompt: 'selectUsersToConfirm',
         task: (names) => {
-          console.log('>>> names', names);
           slackUserIds = names.map(name => this.options.slackUser[name]);
         },
         label: 'Select user to confirm',
       })
     }
-
-    console.log('>>> slack user codes', slackUserIds);
 
     await new Promise(async (resolve, reject) => {
       const app = new App({
@@ -251,6 +248,9 @@ class SlackNotificationPlugin extends Plugin {
   
       app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
         await ack();
+
+        console.log('>>> body:', body);
+
         await say({
           text: 'Approve handled :clap:',
           thread_ts: body.message.thread_ts || body.message.ts,
