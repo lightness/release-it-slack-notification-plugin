@@ -246,10 +246,14 @@ class SlackNotificationPlugin extends Plugin {
     });
 
     await new Promise(async (resolve, reject) => {
-      app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
-        await ack();
+      let messageTs; 
 
-        console.log('>>> debug approve:', body);
+      app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
+        if (body.message.ts !== messageTs) {
+          return;
+        }
+
+        await ack();
 
         if (slackUserIds.includes(body.user.id)) {
           await say({
@@ -267,6 +271,10 @@ class SlackNotificationPlugin extends Plugin {
       });
   
       app.action('reject_button', async ({ payload, body, ack, say, respond }) => {
+        if (body.message.ts !== messageTs) {
+          return;
+        }
+
         await ack();
 
         if (slackUserIds.includes(body.user.id)) {
@@ -291,6 +299,7 @@ class SlackNotificationPlugin extends Plugin {
       const response = await app.client.chat.postMessage(message);
   
       this.log.log('>>> response', response);
+      messageTs = response.message.ts;
   
       this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
     });
