@@ -235,7 +235,7 @@ class SlackNotificationPlugin extends Plugin {
       await this.step({
         enabled: true,
         prompt: 'selectUsersToConfirm',
-        task: (...names) => {
+        task: (names) => {
           console.log('>>> names', names);
           userCodes = names.map(name => this.options.slackUser[name]);
         },
