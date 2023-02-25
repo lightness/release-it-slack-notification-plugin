@@ -173,7 +173,7 @@ class SlackNotificationPlugin extends Plugin {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: slackUserIds.map(userId => `<@${userId}>`),
+            text: slackUserIds.map(userId => `<@${userId}>`).join(),
           },
         },
         {
