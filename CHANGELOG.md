@@ -1,5 +1,12 @@
 
 
+## [1.1.0-7](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-6...1.1.0-7) (2023-02-25)
+
+
+### Features
+
+* cover approve from wrong user ([1a57182](https://github.com/lightness/release-it-slack-notification-plugin/commit/1a571828a1cfcb2c326c34fce1ab66864853204b))
+
 ## [1.1.0-6](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-5...1.1.0-6) (2023-02-25)
 
 ## [1.1.0-5](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-4...1.1.0-5) (2023-02-25)
