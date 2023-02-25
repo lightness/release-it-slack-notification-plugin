@@ -238,26 +238,24 @@ class SlackNotificationPlugin extends Plugin {
       })
     }
 
+    const app = new App({
+      token: this.slackBotToken,
+      signingSecret: this.slackSigningSecret,
+      appToken: this.slackAppToken,
+      socketMode: true,
+    });
+
     await new Promise(async (resolve, reject) => {
-      const app = new App({
-        token: this.slackBotToken,
-        signingSecret: this.slackSigningSecret,
-        appToken: this.slackAppToken,
-        socketMode: true,
-      });
-  
       app.action('approve_button', async ({ payload, body, ack, say, respond }) => {
         await ack();
 
         if (slackUserIds.includes(body.user.id)) {
           await say({
-            text: `:rocket: Thanks for your approve, <@${body.user.id}>!`,
+            text: `:thumbsup: Thanks for your approve, <@${body.user.id}>!`,
             thread_ts: body.message.thread_ts || body.message.ts,
           });
   
           resolve();
-
-          app.close();
         } else {
           await say({
             text: `:warning: <@${body.user.id}>! You can not approve this release.`,
@@ -268,12 +266,20 @@ class SlackNotificationPlugin extends Plugin {
   
       app.action('reject_button', async ({ payload, body, ack, say, respond }) => {
         await ack();
-        await say({
-          text: 'Reject handled :clap:',
-          thread_ts: body.message.thread_ts || body.message.ts,
-        });
 
-        reject();
+        if (slackUserIds.includes(body.user.id)) {
+          await say({
+            text: `:thumbsdown: Release rejected by <@${body.user.id}>!`,
+            thread_ts: body.message.thread_ts || body.message.ts,
+          });
+
+          reject();
+        } else {
+          await say({
+            text: `:warning: <@${body.user.id}>! You can not reject this release.`,
+            thread_ts: body.message.thread_ts || body.message.ts,
+          });
+        }
       });
   
       await app.start();
@@ -286,6 +292,8 @@ class SlackNotificationPlugin extends Plugin {
   
       this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
     });
+
+    app.stop();
   }
 }
 
