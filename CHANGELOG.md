@@ -1,5 +1,12 @@
 
 
+## [1.1.0-11](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-10...1.1.0-11) (2023-02-25)
+
+
+### Features
+
+* do not react on actions from different messages ([ac1e23f](https://github.com/lightness/release-it-slack-notification-plugin/commit/ac1e23f1c20bcdca5cf6acc3fb0ff8d0123477df))
+
 ## [1.1.0-10](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-9...1.1.0-10) (2023-02-25)
 
 ## [1.1.0-9](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-8...1.1.0-9) (2023-02-25)
