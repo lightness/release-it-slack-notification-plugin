@@ -33,7 +33,6 @@ class SlackNotificationPlugin extends Plugin {
         });
         break;
     }
-    
   }
 
   get slackUsers() {
