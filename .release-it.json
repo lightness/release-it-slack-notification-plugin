@@ -25,8 +25,7 @@
     },
     "./index.js": {
       "slackMessageTitle": "@lightness/release-it-slack-notification-plugin",
-      "mode1": "notification",
-      "mode": "confirmation",
+      "mode": "notification",
       "slackUser": {
         "Uladzimir": "U04KUUPCALV"
       }
