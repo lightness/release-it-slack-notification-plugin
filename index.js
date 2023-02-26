@@ -1,7 +1,7 @@
 import { Plugin } from 'release-it';
+import SlackBolt from '@slack/bolt';
 import slackify from 'slackify-markdown';
 import { default as prompts } from './prompts.js';
-import SlackBolt from '@slack/bolt';
 
 const { App } = SlackBolt;
 
