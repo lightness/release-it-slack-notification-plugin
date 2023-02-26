@@ -307,7 +307,6 @@ class SlackNotificationPlugin extends Plugin {
       const message = this.composeConfirmationMessage(text, slackUserIds);
       const response = await app.client.chat.postMessage(message);
   
-      // this.log.log('>>> response', response);
       messageTs = response.message.ts;
   
       this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
