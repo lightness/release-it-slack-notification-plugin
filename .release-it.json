@@ -27,7 +27,7 @@
       "slackMessageTitle": "@lightness/release-it-slack-notification-plugin",
       "mode1": "notification",
       "mode": "confirmation",
-      "slackUser1": {
+      "slackUser": {
         "Uladzimir": "U04KUUPCALV"
       }
     }
