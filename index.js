@@ -107,19 +107,20 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   async notifyInSlack(text) {
-    if (!this.slackBotToken) {
-      this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
+    // if (!this.slackBotToken) {
+    //   this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
 
-      return;
-    }
+    //   return;
+    // }
 
-    if (!this.slackChannel) {
-      this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
+    // if (!this.slackChannel) {
+    //   this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
 
-      return;
-    }
+    //   return;
+    // }
 
     const message = this.composeNotificationMessage(text);
+    await app.client.chat.postMessage(message);
 
     this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
   }
@@ -209,24 +210,34 @@ class SlackNotificationPlugin extends Plugin {
     };
   }
 
-  async confirmInSlack(text) {
+  init() {
     if (!this.slackBotToken) {
-      this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
-
-      return;
+      throw new Error(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
     }
 
     if (!this.slackChannel) {
-      this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
-
-      return;
+      throw new Error(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
     }
 
-    if (this.slackUsers.length === 0) {
-      throw new Error(`Slack users is not set. Use "slackUser" option in plugin config`);
-
-      return;
+    if (this.mode === 'confirmation') {
+      if (this.slackUsers.length === 0) {
+        throw new Error(`Slack users is not set. Use "slackUser" option in plugin config`);
+      }
     }
+  }
+
+  async confirmInSlack(text) {
+    // if (!this.slackBotToken) {
+    //   throw new Error(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
+    // }
+
+    // if (!this.slackChannel) {
+    //   throw new Error(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
+    // }
+
+    // if (this.slackUsers.length === 0) {
+    //   throw new Error(`Slack users is not set. Use "slackUser" option in plugin config`);
+    // }
 
     let slackUserIds = [];
 
