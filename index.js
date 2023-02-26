@@ -223,7 +223,7 @@ class SlackNotificationPlugin extends Plugin {
     }
 
     if (this.slackUsers.length === 0) {
-      this.log.log(`Slack users is not set. Use "slackUser" option in plugin config`);
+      throw new Error(`Slack users is not set. Use "slackUser" option in plugin config`);
 
       return;
     }
