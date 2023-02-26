@@ -25,6 +25,11 @@ export default {
       const config = getPluginConfig(options);
 
       return Object.keys(config.slackUser);
-    }
+    },
+    validate: (input) => {
+      console.log('>>> input', input);
+
+      return input.length > 0;
+    },
   }
 };

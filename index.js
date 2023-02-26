@@ -1,5 +1,4 @@
 import { Plugin } from 'release-it';
-import fetch from 'node-fetch';
 import slackify from 'slackify-markdown';
 import { default as prompts } from './prompts.js';
 import SlackBolt from '@slack/bolt';
@@ -173,7 +172,7 @@ class SlackNotificationPlugin extends Plugin {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: slackUserIds.map(userId => `<@${userId}>`).join() || '',
+            text: slackUserIds.map(userId => `<@${userId}>`).join(),
           },
         },
         {
@@ -217,10 +216,14 @@ class SlackNotificationPlugin extends Plugin {
       return;
     }
 
-    // TODO: Check other stuff
-
     if (!this.slackChannel) {
       this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
+
+      return;
+    }
+
+    if (this.slackUsers.length === 0) {
+      this.log.log(`Slack users is not set. Use "slackUser" option in plugin config`);
 
       return;
     }
