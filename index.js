@@ -106,18 +106,26 @@ class SlackNotificationPlugin extends Plugin {
     return slackIconEmoji;
   }
 
+  get boltApp() {
+    return new App({
+      token: this.slackBotToken,
+      signingSecret: this.slackSigningSecret,
+      appToken: this.slackAppToken,
+      socketMode: true,
+      logger: {
+        debug: () => {},
+        info: () => {},
+        warn: () => {},
+        error: () => {},
+        setLevel: () => {},
+        getLevel: () => {},
+        setName: () => {},
+      },
+    });
+  }
+
   async notifyInSlack(text) {
-    // if (!this.slackBotToken) {
-    //   this.log.log(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
-
-    //   return;
-    // }
-
-    // if (!this.slackChannel) {
-    //   this.log.log(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
-
-    //   return;
-    // }
+    const { boltApp: app } = this;
 
     const message = this.composeNotificationMessage(text);
     await app.client.chat.postMessage(message);
@@ -227,18 +235,6 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   async confirmInSlack(text) {
-    // if (!this.slackBotToken) {
-    //   throw new Error(`Slack bot token is not set. Use "${this.slackBotTokenRef}" env var for that`);
-    // }
-
-    // if (!this.slackChannel) {
-    //   throw new Error(`Slack channel is not set. Use "${this.slackChannelRef}" env var for that`);
-    // }
-
-    // if (this.slackUsers.length === 0) {
-    //   throw new Error(`Slack users is not set. Use "slackUser" option in plugin config`);
-    // }
-
     let slackUserIds = [];
 
     if (this.slackUsers.length > 0) {
@@ -252,21 +248,7 @@ class SlackNotificationPlugin extends Plugin {
       })
     }
 
-    const app = new App({
-      token: this.slackBotToken,
-      signingSecret: this.slackSigningSecret,
-      appToken: this.slackAppToken,
-      socketMode: true,
-      logger: {
-        debug: () => {},
-        info: () => {},
-        warn: () => {},
-        error: () => {},
-        setLevel: () => {},
-        getLevel: () => {},
-        setName: () => {},
-      },
-    });
+    const { boltApp: app } = this;
 
     await new Promise(async (resolve, reject) => {
       let messageTs; 
