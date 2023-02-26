@@ -1,5 +1,18 @@
 
 
+## [1.1.0-13](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-12...1.1.0-13) (2023-02-26)
+
+
+### Features
+
+* extract validation into init step ([5ee5eea](https://github.com/lightness/release-it-slack-notification-plugin/commit/5ee5eea2af038d7076f45e52e7fcf5f7a897bedc))
+
+
+### Bug Fixes
+
+* throw error if slackUser is not set ([9f8ca58](https://github.com/lightness/release-it-slack-notification-plugin/commit/9f8ca58c8fafccab07dd5c787126fd7baf6f5e4f))
+* using bolt app in notification mode too ([a65c8e4](https://github.com/lightness/release-it-slack-notification-plugin/commit/a65c8e4436debc165cfb8de1e778c9d5245ac750))
+
 ## [1.1.0-12](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-11...1.1.0-12) (2023-02-25)
 
 
