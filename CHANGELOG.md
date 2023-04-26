@@ -1,5 +1,12 @@
 
 
+### [1.1.1-1](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-0...1.1.1-1) (2023-04-26)
+
+
+### Bug Fixes
+
+* try pass default value ([4db021f](https://github.com/lightness/release-it-slack-notification-plugin/commit/4db021f6e11e39d137425fdf5ea4af9ecaacd4fd))
+
 ### [1.1.1-0](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0...1.1.1-0) (2023-04-26)
 
 ## [1.1.0](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.0-13...1.1.0) (2023-02-26)
