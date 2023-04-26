@@ -1,5 +1,12 @@
 
 
+### [1.1.1-3](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-2...1.1.1-3) (2023-04-26)
+
+
+### Features
+
+* conditionally show selectUsersToConfirm prompt ([226b3dc](https://github.com/lightness/release-it-slack-notification-plugin/commit/226b3dc209383c94e9eb930626c9d3d42f6d0e59))
+
 ### [1.1.1-2](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-1...1.1.1-2) (2023-04-26)
 
 ### [1.1.1-1](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-0...1.1.1-1) (2023-04-26)
