@@ -37,7 +37,7 @@ class SlackNotificationPlugin extends Plugin {
 
   get slackUsers() {
     const { slackUser = {} } = this.options;
-
+    console.log('>>> 1');
     return Object.entries(slackUser).map(([key, value]) => ({ name: key, code: value }));
   }
 
@@ -157,6 +157,7 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   composeConfirmationMessage(text, slackUserIds) {
+    console.log('>>> 2');
     return {
       channel: this.slackChannel,
       username: this.slackUsername,
@@ -241,6 +242,7 @@ class SlackNotificationPlugin extends Plugin {
         enabled: true,
         prompt: 'selectUsersToConfirm',
         task: (names) => {
+          console.log('>>> 3');
           slackUserIds = names.map(name => this.options.slackUser[name]);
         },
         label: 'Select user to confirm',
