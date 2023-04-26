@@ -17,7 +17,8 @@ export default {
   },
   selectUsersToConfirm: {
     type: 'checkbox',
-    default: () => {
+    default: (...args) => {
+      console.log('>>> default args', ...args);
       const config = getPluginConfig(options);
 
       return Object.keys(config.slackUser);
