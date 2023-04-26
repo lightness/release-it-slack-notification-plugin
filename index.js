@@ -37,7 +37,7 @@ class SlackNotificationPlugin extends Plugin {
 
   get slackUsers() {
     const { slackUser = {} } = this.options;
-    console.log('>>> 1');
+
     return Object.entries(slackUser).map(([key, value]) => ({ name: key, code: value }));
   }
 
@@ -129,7 +129,7 @@ class SlackNotificationPlugin extends Plugin {
     const message = this.composeNotificationMessage(text);
     await app.client.chat.postMessage(message);
 
-    this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
+    this.log(`Notification sent in ${this.slackChannel} slack channel`);
   }
 
   composeNotificationMessage(text) {
@@ -157,7 +157,6 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   composeConfirmationMessage(text, slackUserIds) {
-    console.log('>>> 2');
     return {
       channel: this.slackChannel,
       username: this.slackUsername,
@@ -238,14 +237,11 @@ class SlackNotificationPlugin extends Plugin {
     let slackUserIds = [];
 
     if (this.slackUsers.length > 0) {
-      const shouldPromptBeShown = !this.config.isCI && !this.config.isPromptOnlyVersion;
-
-      if (shouldPromptBeShown) {
+      if (this.isInteractiveMode) {
         await this.step({
           enabled: true,
           prompt: 'selectUsersToConfirm',
           task: (names) => {
-            console.log('>>> 3', names, typeof names, Array.isArray(names));
             slackUserIds = names.map(name => this.options.slackUser[name]);
           },
           label: 'Select user to confirm',
@@ -273,7 +269,7 @@ class SlackNotificationPlugin extends Plugin {
             thread_ts: body.message.thread_ts || body.message.ts,
           });
   
-          this.log.log('Release approved!');
+          this.log('Release approved!');
 
           resolve();
         } else {
@@ -297,7 +293,7 @@ class SlackNotificationPlugin extends Plugin {
             thread_ts: body.message.thread_ts || body.message.ts,
           });
 
-          this.log.log('Release rejected!');
+          this.log.error('Release rejected!');
 
           reject();
         } else {
@@ -309,18 +305,28 @@ class SlackNotificationPlugin extends Plugin {
       });
   
       await app.start();
-      this.log.log('⚡️ Bolt app started');
+      this.log('⚡️ Bolt app started');
   
       const message = this.composeConfirmationMessage(text, slackUserIds);
       const response = await app.client.chat.postMessage(message);
   
       messageTs = response.message.ts;
   
-      this.log.log(`Notification sent in ${this.slackChannel} slack channel`);
+      this.log(`Notification sent in ${this.slackChannel} slack channel`);
     });
 
     app.stop();
-    this.log.log('⚡️ Bolt app stopped');
+    this.log('⚡️ Bolt app stopped');
+  }
+
+  get isInteractiveMode() {
+    return !this.config.isCI && !this.config.isPromptOnlyVersion;
+  }
+
+  log(message) {
+    if (this.isInteractiveMode) {
+      this.log.log(message);
+    }
   }
 }
 
