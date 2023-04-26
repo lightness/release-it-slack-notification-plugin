@@ -1,5 +1,17 @@
 
 
+### [1.1.1-4](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-3...1.1.1-4) (2023-04-26)
+
+
+### Features
+
+* disable log in non-interactive mode ([1bbd7b8](https://github.com/lightness/release-it-slack-notification-plugin/commit/1bbd7b8e2832e7e89a75082a10df16b8fbf17e32))
+
+
+### Bug Fixes
+
+* naming issues ([522e78a](https://github.com/lightness/release-it-slack-notification-plugin/commit/522e78aaabea2f5150b9eb79fef8216b4c30a6bf))
+
 ### [1.1.1-3](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-2...1.1.1-3) (2023-04-26)
 
 
