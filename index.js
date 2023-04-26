@@ -129,7 +129,7 @@ class SlackNotificationPlugin extends Plugin {
     const message = this.composeNotificationMessage(text);
     await app.client.chat.postMessage(message);
 
-    this.log(`Notification sent in ${this.slackChannel} slack channel`);
+    this.writeLog(`Notification sent in ${this.slackChannel} slack channel`);
   }
 
   composeNotificationMessage(text) {
@@ -269,7 +269,7 @@ class SlackNotificationPlugin extends Plugin {
             thread_ts: body.message.thread_ts || body.message.ts,
           });
   
-          this.log('Release approved!');
+          this.writeLog('Release approved!');
 
           resolve();
         } else {
@@ -305,25 +305,25 @@ class SlackNotificationPlugin extends Plugin {
       });
   
       await app.start();
-      this.log('⚡️ Bolt app started');
+      this.writeLog('⚡️ Bolt app started');
   
       const message = this.composeConfirmationMessage(text, slackUserIds);
       const response = await app.client.chat.postMessage(message);
   
       messageTs = response.message.ts;
   
-      this.log(`Notification sent in ${this.slackChannel} slack channel`);
+      this.writeLog(`Notification sent in ${this.slackChannel} slack channel`);
     });
 
     app.stop();
-    this.log('⚡️ Bolt app stopped');
+    this.writeLog('⚡️ Bolt app stopped');
   }
 
   get isInteractiveMode() {
     return !this.config.isCI && !this.config.isPromptOnlyVersion;
   }
 
-  log(message) {
+  writeLog(message) {
     if (this.isInteractiveMode) {
       this.log.log(message);
     }
