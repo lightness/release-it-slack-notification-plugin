@@ -17,12 +17,7 @@ export default {
   },
   selectUsersToConfirm: {
     type: 'checkbox',
-    default: (...args) => {
-      console.log('>>> default args', ...args);
-      const config = getPluginConfig(options);
-
-      return Object.keys(config.slackUser);
-    },
+    default: [],
     message: () => {
       return 'Select slack users to confirm release:';
     },

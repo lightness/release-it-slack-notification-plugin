@@ -238,15 +238,21 @@ class SlackNotificationPlugin extends Plugin {
     let slackUserIds = [];
 
     if (this.slackUsers.length > 0) {
-      await this.step({
-        enabled: true,
-        prompt: 'selectUsersToConfirm',
-        task: (names) => {
-          console.log('>>> 3', names, typeof names, Array.isArray(names));
-          slackUserIds = names.map(name => this.options.slackUser[name]);
-        },
-        label: 'Select user to confirm',
-      })
+      const shouldPromptBeShown = !this.config.isCI && !this.config.isPromptOnlyVersion;
+
+      if (shouldPromptBeShown) {
+        await this.step({
+          enabled: true,
+          prompt: 'selectUsersToConfirm',
+          task: (names) => {
+            console.log('>>> 3', names, typeof names, Array.isArray(names));
+            slackUserIds = names.map(name => this.options.slackUser[name]);
+          },
+          label: 'Select user to confirm',
+        });
+      } else {
+        slackUserIds = Object.values(this.options.slackUser);
+      }
     }
 
     const { boltApp: app } = this;
