@@ -1,5 +1,7 @@
 
 
+### [1.1.1](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-4...1.1.1) (2023-04-26)
+
 ### [1.1.1-4](https://github.com/lightness/release-it-slack-notification-plugin/compare/1.1.1-3...1.1.1-4) (2023-04-26)
 
 
