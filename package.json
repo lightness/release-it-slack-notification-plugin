@@ -28,13 +28,13 @@
   "bugs": "https://github.com/lightness/release-it-slack-notification-plugin/issues",
   "author": "Uladzimir Aleshka",
   "devDependencies": {
-    "@release-it/conventional-changelog": "^5.1.1",
+    "@release-it/conventional-changelog": "^7.0.0",
     "bron": "^2.0.3",
-    "release-it": "^15.6.0",
+    "release-it": "^16.0.0",
     "sinon": "^15.0.1"
   },
   "peerDependencies": {
-    "release-it": "^15.6.0"
+    "release-it": "^16.0.0"
   },
   "engines": {
     "node": ">=14.9"
