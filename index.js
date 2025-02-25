@@ -133,6 +133,24 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   composeNotificationMessage(text) {
+    const sections = text.split('\n').filter(x => x).reduce((parts, cur) => {
+      if (cur.startsWith('###')) {
+        parts.push('');
+      }
+
+      parts[parts.length - 1] = `${parts[parts.length - 1]}${cur}\n`
+
+      return parts;
+    }, []).map((part) => {
+      return ({
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: slackify(part),
+        },
+      });
+    });
+
     return {
       channel: this.slackChannel,
       username: this.slackUsername,
@@ -145,18 +163,30 @@ class SlackNotificationPlugin extends Plugin {
             text: '`' + this.slackMessageTitle + '`',
           }
         },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: slackify(text),
-          },
-        },
+        ...sections,
       ]
     };
   }
 
   composeConfirmationMessage(text, slackUserIds) {
+    const sections = text.split('\n').filter(x => x).reduce((parts, cur) => {
+      if (cur.startsWith('###')) {
+        parts.push('');
+      }
+
+      parts[parts.length - 1] = `${parts[parts.length - 1]}${cur}\n`
+
+      return parts;
+    }, []).map((part) => {
+      return ({
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: slackify(part),
+        },
+      });
+    });
+
     return {
       channel: this.slackChannel,
       username: this.slackUsername,
@@ -169,13 +199,7 @@ class SlackNotificationPlugin extends Plugin {
             text: '`' + this.slackMessageTitle + '`',
           }
         },
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: slackify(text),
-          },
-        },
+        ...sections,
         {
           type: 'section',
           text: {
