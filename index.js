@@ -271,7 +271,10 @@ class SlackNotificationPlugin extends Plugin {
   }
 
   async createBitbucketPr(sourceBranch) {
-    const title = `Release v${this.config.contextOptions.version}`;
+    const isHotfix = this.currentBranchName !== this.sourceBranch;
+    const newVersion = this.config.contextOptions.version;
+    
+    const title = isHotfix ? `:fire: Hotfix v${newVersion}` : `:rocket: Release v${newVersion}`;
     
     const response = await createPr(this.bitbucketCredentials, {
       sourceBranch,
