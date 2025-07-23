@@ -18,5 +18,8 @@
     "titleBar.inactiveBackground": "#88444499",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#884444"
+  "peacock.color": "#884444",
+  "cSpell.words": [
+    "slackify"
+  ]
 }
